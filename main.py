@@ -1,3 +1,5 @@
+import re
+
 def value(r):
     if r == 'I': return 1
     if r == 'V': return 5
@@ -7,7 +9,6 @@ def value(r):
     if r == 'D': return 500
     if r == 'M': return 1000
     return -1
-
 
 def number(str):
     result = 0
@@ -28,5 +29,14 @@ def number(str):
             i = i + 1
     return result
 
-print("Integer form of Roman Numeral is")
-print(number("MIMXXX"))
+
+def RumanNumeralValidation(userInput):
+    return bool(re.search(r"^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$", userInput))
+
+
+print("Please enter a Roman Numeral: ")
+userInput = input()
+if RumanNumeralValidation(userInput):
+    print("The number is: ", number(userInput))
+else:
+    print("Invalid Roman Numeral")
